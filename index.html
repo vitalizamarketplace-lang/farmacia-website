@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FarmáciaPLUS - Sua Farmácia Online</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">💊 FarmáciaPLUS</div>
+            <div class="nav-buttons">
+                <button class="btn-search" onclick="toggleSearch()">🔍 Buscar</button>
+                <button class="btn-cart" onclick="toggleCart()">🛒 Carrinho <span id="cart-count" class="cart-count">0</span></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Search Bar -->
+    <div id="search-bar" class="search-bar hidden">
+        <div class="container">
+            <input type="text" id="search-input" placeholder="Busque medicamentos, vitaminas..." onkeyup="searchProducts()">
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Bem-vindo à FarmáciaPLUS</h1>
+            <p>Medicamentos e produtos de saúde entregues em sua casa</p>
+            <button class="btn-primary" onclick="scrollToProducts()">Ver Produtos</button>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section">
+        <div class="container">
+            <h2>Nossos Produtos</h2>
+            <div class="filter-buttons">
+                <button class="filter-btn active" onclick="filterProducts('todos')">Todos</button>
+                <button class="filter-btn" onclick="filterProducts('medicamentos')">Medicamentos</button>
+                <button class="filter-btn" onclick="filterProducts('vitaminas')">Vitaminas</button>
+                <button class="filter-btn" onclick="filterProducts('higiene')">Higiene</button>
+                <button class="filter-btn" onclick="filterProducts('primeiro-socorso')">Primeiro Socorro</button>
+            </div>
+            <div id="products-grid" class="products-grid">
+                <!-- Products will be loaded here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Shopping Cart Sidebar -->
+    <div id="cart-sidebar" class="cart-sidebar hidden">
+        <div class="cart-header">
+            <h2>Seu Carrinho</h2>
+            <button class="btn-close" onclick="toggleCart()">✕</button>
+        </div>
+        <div id="cart-items" class="cart-items">
+            <!-- Cart items will be displayed here -->
+        </div>
+        <div class="cart-summary">
+            <div class="summary-row">
+                <span>Subtotal:</span>
+                <span id="subtotal">R$ 0,00</span>
+            </div>
+            <div class="summary-row">
+                <span>Frete:</span>
+                <span id="shipping">R$ 0,00</span>
+            </div>
+            <div class="summary-row total">
+                <span>Total:</span>
+                <span id="total">R$ 0,00</span>
+            </div>
+            <button class="btn-checkout" onclick="goToCheckout()">Finalizar Compra</button>
+            <button class="btn-continue" onclick="toggleCart()">Continuar Comprando</button>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div id="overlay" class="overlay hidden" onclick="closeOverlay()"></div>
+
+    <!-- Checkout Modal -->
+    <div id="checkout-modal" class="modal hidden">
+        <div class="modal-content">
+            <button class="btn-close" onclick="closeCheckout()">✕</button>
+            <h2>Finalizar Compra</h2>
+            <form onsubmit="submitOrder(event)">
+                <div class="form-section">
+                    <h3>Endereço de Entrega</h3>
+                    <input type="text" placeholder="Nome Completo" required>
+                    <input type="email" placeholder="Email" required>
+                    <input type="text" placeholder="Telefone" required>
+                    <input type="text" placeholder="CEP" required>
+                    <input type="text" placeholder="Rua" required>
+                    <input type="text" placeholder="Número" required>
+                    <input type="text" placeholder="Bairro" required>
+                    <input type="text" placeholder="Cidade" required>
+                </div>
+
+                <div class="form-section">
+                    <h3>Pagamento</h3>
+                    <div class="payment-options">
+                        <label>
+                            <input type="radio" name="payment" value="credit" checked>
+                            Cartão de Crédito
+                        </label>
+                        <label>
+                            <input type="radio" name="payment" value="debit">
+                            Cartão de Débito
+                        </label>
+                        <label>
+                            <input type="radio" name="payment" value="pix">
+                            PIX
+                        </label>
+                    </div>
+                </div>
+
+                <div class="order-summary">
+                    <h3>Resumo do Pedido</h3>
+                    <div id="checkout-items"></div>
+                    <div class="summary-row total">
+                        <span>Total a Pagar:</span>
+                        <span id="checkout-total">R$ 0,00</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-submit">Confirmar Pedido</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>FarmáciaPLUS</h4>
+                    <p>Sua farmácia de confiança online</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <p>📞 (11) 3000-0000<br>📧 contato@farmaciapluss.com.br</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Horário</h4>
+                    <p>Seg-Sab: 08h às 22h<br>Dom: 09h às 20h</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 FarmáciaPLUS. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
